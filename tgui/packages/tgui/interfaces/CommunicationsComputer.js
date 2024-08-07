@@ -225,9 +225,11 @@ const PlayerPage = (props, context) => {
 
   let ccMessageText = emagged ? 'Message [UNKNOWN]' : 'Message CentComm';
   let nukeRequestText = 'Request Authentication Codes';
+  let bioScanText = 'Request Biohazard Scan';
   if (cc_cooldown > 0) {
     ccMessageText += ' (' + cc_cooldown + 's)';
     nukeRequestText += ' (' + cc_cooldown + 's)';
+    bioScanText += ' (' + cc_cooldown + 's)';
   }
 
   return (
@@ -284,7 +286,12 @@ const PlayerPage = (props, context) => {
               />
             </LabeledList.Item>
             <LabeledList.Item label="Bioscan Request">
-              <Button icon="biohazard" disabled={!authcapt || cc_cooldown > 0} onClick={() => act('bioscan')} />
+              <Button
+                icon="biohazard"
+                content={bioScanText}
+                disabled={!authcapt || cc_cooldown > 0}
+                onClick={() => act('bioscan')}
+              />
             </LabeledList.Item>
           </LabeledList>
         </Section>
