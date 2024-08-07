@@ -818,10 +818,7 @@ SUBSYSTEM_DEF(ticker)
 						output = "Princess Terrors"
 					if(TS_INFESTATION_QUEEN_SPIDER)
 						output = "Queen Terrors"
-				var/spiders = 0
-				for(var/mob/living/simple_animal/hostile/poison/terror_spider/S in GLOB.ts_spiderlist)
-					if(S.ckey)
-						spiders++
+				var/spiders = count_terrors()
 				if(spiders >= 5 || (output == "Prince Terror" && spiders == 1)) //If a prince lives, record as win.
 					switch(outcome)
 						if(ROUND_END_NUCLEAR)
@@ -881,3 +878,8 @@ SUBSYSTEM_DEF(ticker)
 		if(xeno_mind.current?.stat == DEAD)
 			continue
 		.++
+/datum/controller/subsystem/ticker/proc/count_terrors()
+	. = 0
+	for(var/mob/living/simple_animal/hostile/poison/terror_spider/S in GLOB.ts_spiderlist)
+		if(S.ckey)
+			.++

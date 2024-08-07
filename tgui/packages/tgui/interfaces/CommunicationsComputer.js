@@ -283,6 +283,9 @@ const PlayerPage = (props, context) => {
                 onClick={() => act('nukerequest')}
               />
             </LabeledList.Item>
+            <LabeledList.Item label="Bioscan Request">
+              <Button icon="biohazard" disabled={!authcapt || cc_cooldown > 0} onClick={() => act('bioscan')} />
+            </LabeledList.Item>
           </LabeledList>
         </Section>
       </Stack.Item>

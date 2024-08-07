@@ -92,4 +92,7 @@
 					to_chat(X, "<span class='userdanger'>The nuclear device does not have a core, and will not arm!</span>")
 			if(X.prefs.sound & SOUND_ADMINHELP)
 				SEND_SOUND(X, sound('sound/effects/adminhelp.ogg'))
-
+/proc/Biohazard_scan(mob/Sender)
+	var/xeno_number = SSticker.count_xenomorps()
+	var/blob_number = length(SSticker.mode.blob_overminds)
+	var/terror_number = SSticker.count_terrors()

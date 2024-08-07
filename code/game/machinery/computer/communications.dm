@@ -259,6 +259,17 @@
 				GLOB.major_announcement.Announce("The codes for the on-station nuclear self-destruction device have been requested by [ui.user]. Confirmation or denial of this request will be sent shortly.", "Nuclear Self Destruct Codes Requested", 'sound/AI/nuke_codes.ogg')
 				centcomm_message_cooldown = world.time + 6000 // 10 minutes
 			setMenuState(ui.user, COMM_SCREEN_MAIN)
+		if("bioscan")
+			if(is_authenticated(ui.user) >= COMM_AUTHENTICATION_CAPT)
+				if(centcomm_message_cooldown > world.time)
+					to_chat(ui.user, "<span class='warning'>Arrays recycling. Please stand by.</span>")
+					return
+				Biohazard_scan(ui.user)
+				to_chat(ui.user, "<span class='notice'>Request sent.</span>")
+				log_game("[key_name(ui.user)] has requested a Biohazard scan from Centcomm")
+				GLOB.major_announcement.Announce("The codes for the on-station nuclear self-destruction device have been requested by [ui.user]. Confirmation or denial of this request will be sent shortly.", "Nuclear Self Destruct Codes Requested", 'sound/AI/nuke_codes.ogg')
+				centcomm_message_cooldown = world.time + 6000 // 10 minutes
+			setMenuState(ui.user, COMM_SCREEN_MAIN)
 
 		if("MessageCentcomm")
 			if(is_authenticated(ui.user) >= COMM_AUTHENTICATION_CAPT)
